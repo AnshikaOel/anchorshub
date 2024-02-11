@@ -6,6 +6,8 @@ const fs=require('fs/promises')
 const path=require('path');
 const {generateOTP,getOTP,verifyOTP} = require('./OTPver'); 
 const {sendemail} =require('./OTPsend');
+const internships = require('./fetch-jobs');
+
 
 const port = 5000;
 const app = express();

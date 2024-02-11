@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom'
 export default function Home() {
 
     function jobs(){
-        const a=fetch('http')
+        const response=fetch('http://localhost:5000/generateOTP',{
+            method:'GET',
+            headers:{
+                'Con'
+            }
+        })
     }
 
   return (

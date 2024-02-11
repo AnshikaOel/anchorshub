@@ -3,7 +3,7 @@ const fs = require('fs');
 const fetchInternships = () => {
     return _readInternshipJSON();
 };
-
+ 
 const fetchInternshipInformation = (internshipId) => {
     return _readInternshipJSON().filter(function(internship) {
         return internship.id==internshipId;
