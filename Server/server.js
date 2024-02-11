@@ -149,7 +149,9 @@ app.post('/post_save',async(req,res)=>{
 })
 
 app.get('/internship/fetch/', (req, res) => {
-    res.json(internships.fetchInternships());
+    internships.fetchInternships().then((data) => {
+        res.json(data);
+    });
 });
 
 app.get('/internship/apply/:internshipId', (req,res) => {

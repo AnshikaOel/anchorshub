@@ -36,7 +36,7 @@ const handleGeneatedOTP=async()=>{
         'Content-Type':'application/json'
       },
     })
-    console.log(response)
+    console.log(response) 
    if(response.ok){
     const data=await response.json()
     if(data && data.otp !== undefined) {
