@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
-export default function Home() {
+export default function Jobs() {
+  const [data, setData] = useState([]);
     const jobs = async () => {
         console.log("kjbvjxkbv bjxbvbjkbnvj");
         try {
@@ -11,26 +12,8 @@ export default function Home() {
             },
           });
           if (response.ok) {
-            let data = await response.json();
-            data=JSON.stringify(data)
-            console.log(data);
-            const size = data.length
-let tab=""
-            console.log(size)
-            for( let i=0;i<size;i++)
-           {
-           tab+=
-        `<table border="1" >
-        <tr">
-          <td>${data[i].id}</td>
-          <td>${data[i].role}</td>
-
-          <td>${data[i].stipend}</td>
-          <td>${data[i].duration}</td>
-        </tr>
-      </table>`
-    }
-    document.querySelector("#apidata").innerHTML=tab
+              let dataSet = await response.json();
+              setData(dataSet)
           } else {
             console.log('Failed to fetch data');
           }
@@ -46,9 +29,29 @@ let tab=""
     <div onLoad={jobs}>
       <h1 className='Heading' id='title'>AnchorsHUB</h1>
       <div className='navBar'> 
-      <tbody id="apidata">
-      {/* api data */}
-    </tbody>
+         <table border="1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Role</th>
+              <th>Stipend</th>
+              <th>Company Name</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody id="apidata">
+            {data.map(item => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.role}</td>
+                <td>{item.stipend}</td>
+                <td>{item.company.name}</td>
+                <td>{item.duration}</td>
+                <button>Apply</button>
+              </tr>
+            ))}
+          </tbody>
+        </table>
          <br></br>
          
       </div>
