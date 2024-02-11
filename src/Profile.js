@@ -109,7 +109,7 @@ export default function Home() {
         const data={
             id:id,
             StartDate:StartDate,
-            coinadd:2
+            coinadd:2 
           }
           fetch(`http://localhost:5000/post_save`,{
       method:'POST',

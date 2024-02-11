@@ -55,11 +55,12 @@ app.post('/verifyOTP',(req,res)=>{
 
 // saving data
 app.post('/userInfo',async(req,res)=>{
-    const {fname,lname,id,password}=req.body;
+    const {fname,lname,id,coin}=req.body;
     const data={
         fname,
         lname,
-        id
+        id,
+        coin
     }
 
     try{
@@ -134,6 +135,8 @@ app.post('/post_save',async(req,res)=>{
         //  console.log(jsonData)
         const objectToUpdate=jsonData.findIndex(obj=>obj.id===data.id)
                 if(objectToUpdate!==-1){
+                    jsonData[objectToUpdate].coin=jsonData[objectToUpdate].coin+coinadd
+                    console.log("thionfvkxznv"+jsonData[objectToUpdate].coin)
                    Object.assign(jsonData[objectToUpdate],newData) 
                    await fs.writeFile(filePath,JSON.stringify(jsonData,null,2),'utf-8')
                    console.log('data has been updated successfully')
@@ -147,7 +150,7 @@ app.post('/post_save',async(req,res)=>{
         res.status(500).json({error:'Internal Server Error'})
     }
 })
-
+ 
 app.get('/internship/fetch/', (req, res) => {
     internships.fetchInternships().then((data) => {
         res.json(data);
